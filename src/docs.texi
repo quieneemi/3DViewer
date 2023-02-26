@@ -1,0 +1,78 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+\title{User manual for a 3D viewer}
+
+\author{cgreebne and bgreydon}
+
+\date{October 14 2022}
+
+
+\begin{document}
+
+% Contents
+\maketitle
+
+\pagebreak
+
+\tableofcontents
+
+\pagebreak
+
+
+% Brief introduction page
+\section{brief introduction}
+
+The graphical interface of the 3D viewer is written using the qt graphical library.
+Model viewer was developed and tested on the Linux with kde and gnome graphical shell of the desktop environment.
+
+The program provide the ability to show only one model on the screen at a time.
+The program provide the ability to:
+  \begin{itemize}
+    \item Load a wireframe model from an obj file (vertices and surfaces list support only);
+    \item Translate the model by a given distance in relation to the X, Y, Z axes;
+    \item Rotate the model by a given angle in relation to its X, Y, Z axes;
+    \item Scale the model by a given value.
+  \end{itemize}
+
+The program has the functionality of exporting the current frame to Jpeg Bmp format.
+Also, the program can record the 3D viewer screen for 5 seconds.
+Recording will start 1 second after pressing the record button.
+The result will be a gif image with a frame rate 10.
+\pagebreak
+
+
+% Affine transformations page
+\section{affine transformations}
+
+The 3D viewer has buttons for interacting with the model:
+  \begin{itemize}
+    \item Moving the model at a specified distance from the current position relative to the X, Y, Z axes;
+    \item Rotate the model by a specified from the current angle relative to the X, Y, Z axes;
+    \item Scale the model relative to the base size of the model.
+  \end{itemize}
+\pagebreak
+
+
+% Settings page
+\section{settings}
+The setting is saved between program restarts.
+
+The program allows you to configure the following graphic elements of the model:
+  \begin{itemize}
+    \item Projection type;
+    \item Background color;
+    \item Wireframe color;
+    \item Wireframe type;
+    \item Wireframe thickness;
+    \item Vertices display type;
+    \item Vertices color;
+    \item Vertices size.
+  \end{itemize}
+\pagebreak
+
+
+\end{document}

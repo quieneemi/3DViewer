@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>s21::MainForm</class>
+ <widget class="QMainWindow" name="s21::MainForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1180</width>
+    <height>854</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>3D Viewer</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_10">
+    <item>
+     <layout class="QVBoxLayout" name="controlsLayout">
+      <item>
+       <widget class="QGroupBox" name="transformGroupBox">
+        <property name="title">
+         <string>Transform</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QGroupBox" name="moveGroupBox">
+           <property name="title">
+            <string>Move</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <widget class="QSpinBox" name="moveByXSpinBox">
+              <property name="suffix">
+               <string/>
+              </property>
+              <property name="prefix">
+               <string>X: </string>
+              </property>
+              <property name="minimum">
+               <number>-10</number>
+              </property>
+              <property name="maximum">
+               <number>10</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="moveByYSpinBox">
+              <property name="prefix">
+               <string>Y: </string>
+              </property>
+              <property name="minimum">
+               <number>-10</number>
+              </property>
+              <property name="maximum">
+               <number>10</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="moveByZSpinBox">
+              <property name="prefix">
+               <string>Z: </string>
+              </property>
+              <property name="minimum">
+               <number>-10</number>
+              </property>
+              <property name="maximum">
+               <number>10</number>
+              </property>
+              <property name="value">
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="rotateGroupBox">
+           <property name="title">
+            <string>Rotate</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QDoubleSpinBox" name="rotateByXDoubleSpinBox">
+              <property name="minimum">
+               <double>-180.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>180.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="rotateByYDoubleSpinBox">
+              <property name="minimum">
+               <double>-180.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>180.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="rotateByZDoubleSpinBox">
+              <property name="minimum">
+               <double>-180.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>180.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="scaleGroupBox">
+           <property name="title">
+            <string>Scale</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QDoubleSpinBox" name="scaleSpinBox">
+              <property name="suffix">
+               <string> x</string>
+              </property>
+              <property name="minimum">
+               <double>-10.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>10.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.010000000000000</double>
+              </property>
+              <property name="value">
+               <double>1.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="settingsGroupBox">
+        <property name="title">
+         <string>Settings</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_8">
+         <item>
+          <widget class="QGroupBox" name="mainSettingsGroupBox">
+           <property name="title">
+            <string>Main</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <layout class="QHBoxLayout" name="projectionTypeLayout">
+              <item>
+               <widget class="QLabel" name="projectionTypeLabel">
+                <property name="text">
+                 <string>Projection type</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="projectionTypeComboBox">
+                <item>
+                 <property name="text">
+                  <string>Central</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Parallel</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="backgroundColorLayout">
+              <item>
+               <widget class="QLabel" name="backgorLabel">
+                <property name="text">
+                 <string>Background color</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="backgroundColorButton">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="linesSettingsGroupBox">
+           <property name="title">
+            <string>Lines</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <item>
+             <layout class="QHBoxLayout" name="linesTypeLayout">
+              <item>
+               <widget class="QLabel" name="linesTypeLabel">
+                <property name="text">
+                 <string>Type</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="linesTypeComboBox">
+                <item>
+                 <property name="text">
+                  <string>Solid</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Dashed</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="linesThicknessLayout">
+              <item>
+               <widget class="QLabel" name="linesThicknessLabel">
+                <property name="text">
+                 <string>Thickness</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="linesThicknessSpinBox">
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>10</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="linesColorLayout">
+              <item>
+               <widget class="QLabel" name="linesColorLabel">
+                <property name="text">
+                 <string>Color</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="linesColorButton">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="verticesSettingsGroupBox">
+           <property name="title">
+            <string>Vertices</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <layout class="QHBoxLayout" name="verticesTypeLayout">
+              <item>
+               <widget class="QLabel" name="verticesTypeLabel">
+                <property name="text">
+                 <string>Type</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="verticesTypeComboBox">
+                <item>
+                 <property name="text">
+                  <string>None</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Circle</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Square</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="verticesSizeLayout">
+              <item>
+               <widget class="QLabel" name="verticesSizeLabel">
+                <property name="text">
+                 <string>Size</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="verticesSizeSpinBox">
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>10</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="verticesColorLayout">
+              <item>
+               <widget class="QLabel" name="verticesColorLabel">
+                <property name="text">
+                 <string>Color</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="verticesColorButton">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="mainLayout">
+      <item>
+       <widget class="OpenGLWidget" name="openglWidget" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="cursor">
+         <cursorShape>OpenHandCursor</cursorShape>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1180</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuCamera">
+    <property name="title">
+     <string>Camera</string>
+    </property>
+    <addaction name="actionReset"/>
+   </widget>
+   <widget class="QMenu" name="menuRecording">
+    <property name="title">
+     <string>Recording</string>
+    </property>
+    <addaction name="actionJPEG"/>
+    <addaction name="actionBMP"/>
+    <addaction name="separator"/>
+    <addaction name="actionGIF"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuCamera"/>
+   <addaction name="menuRecording"/>
+  </widget>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionReset">
+   <property name="text">
+    <string>Reset</string>
+   </property>
+   <property name="shortcut">
+    <string>R</string>
+   </property>
+  </action>
+  <action name="actionJPEG">
+   <property name="text">
+    <string>JPEG</string>
+   </property>
+  </action>
+  <action name="actionBMP">
+   <property name="text">
+    <string>BMP</string>
+   </property>
+  </action>
+  <action name="actionGIF">
+   <property name="text">
+    <string>GIF</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>OpenGLWidget</class>
+   <extends>QWidget</extends>
+   <header>opengl_widget.h</header>
+   <container>1</container>
+   <slots>
+    <signal>Initialized()</signal>
+    <signal>Resized(float)</signal>
+    <signal>Painted()</signal>
+    <signal>Rotated(double,double)</signal>
+    <signal>Scaled(double)</signal>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>openglWidget</sender>
+   <signal>Initialized()</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnOpenGLWidgetInitialized()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>695</x>
+     <y>437</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>openglWidget</sender>
+   <signal>Resized(float)</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnOpenGLWidgetResized(float)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>695</x>
+     <y>437</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>openglWidget</sender>
+   <signal>Painted()</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnOpenGLWidgetPainted()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>695</x>
+     <y>437</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>openglWidget</sender>
+   <signal>Scaled(double)</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnOpenGLWidgetScaled(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>695</x>
+     <y>437</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>openglWidget</sender>
+   <signal>Rotated(double,double)</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnOpenGLWidgetRotated(double,double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>695</x>
+     <y>437</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>OnOpenGLWidgetInitialized()</slot>
+  <slot>OnOpenGLWidgetResized(float)</slot>
+  <slot>OnOpenGLWidgetPainted()</slot>
+  <slot>OnOpenGLWidgetRotated(double,double)</slot>
+  <slot>OnOpenGLWidgetScaled(double)</slot>
+ </slots>
+</ui>
