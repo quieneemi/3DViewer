@@ -1,11 +1,11 @@
 #include <gtest/gtest.h>
 
-#include "mesh_loader.h"
+#include "mesh-loader/mesh_loader.h"
 
 s21::Mesh mesh;
 s21::MeshLoader mesh_loader;
 
-const QString path = "../../object-files/";
+const QString path = "../object-files/";
 
 TEST(mesh_loader, error_type) {
   QPair<uint, uint> mesh_info = mesh_loader.Load(&mesh, "abc.png");

@@ -1,4 +1,4 @@
-# @author  quieneemi
+# @author    quieneemi
 
 #------------------------------------------------#
 #   INGREDIENTS                                  #
@@ -14,13 +14,13 @@
 #
 # QMAKE      build system executable
 
-NAME := 3DViewer
-VERSION := 2.0
+NAME         := 3DViewer
+VERSION      := 2.0
 
-OS := $(shell uname -s)
-FILES := $(shell find main -regex '.*\(cc\|h\)' -not -path "*shared*")
+OS           := $(shell uname -s)
+FILES        := $(shell find main -regex '.*\(cc\|h\)' -not -path "*shared*")
 
-OBJ_DIR := build/
+OBJ_DIR      := build
 ifeq ($(OS), Darwin)
 OBJ_NAME     := $(NAME).app
 else
@@ -36,85 +36,67 @@ endif
 #------------------------------------------------#
 #   RECIPES                                      #
 #------------------------------------------------#
-# all        default goal
+# all        install and run program
 # install
 # uninstall
-# clean      remove binary
+# clean      remove garbage
 # dvi
 # dist
 # test       run unit tests
-# build      build program
 # linter     run code style check
 # cppcheck   run static code analys
 
-all: install run
+all: install
+ifeq ($(OS), Darwin)
+	open $(OBJ_DIR)/$(OBJ_NAME)
+else
+	$(OBJ_DIR)/$(OBJ_NAME)
+endif
 
-install: build
-	cp build/3DViewer $(INSTALLATION_PATH)
+install: clean
+	mkdir -p tmp
+	cp -r main/* tmp
+	cd tmp; $(QMAKE)
+	cd tmp; make
+	mkdir -p $(OBJ_DIR)
+	cp -r tmp/$(OBJ_NAME) $(OBJ_DIR)
+	rm -rf tmp
 
 uninstall:
-	rm $(INSTALLATION_PATH)3DViewer
+	rm -v $(OBJ_DIR)/$(OBJ_NAME)
 
 clean:
-	rm -rfv *.tar.gz docs.aux docs.log docs.dvi docs.toc build tests-build
+	rm -rfv tmp logs \
+	*.tar.gz *.aux *.log *.dvi *.out *.toc
 
 dvi:
-	latex docs.texi docs.dvi
-	open docs.dvi
+	latex docs.tex docs.dvi
 
-dist: build
-	tar -czvf 3DViewer-2.0.tar.gz build/3DViewer
+dist: build dvi
+	tar -czvf $(NAME)-$(VERSION).tar.gz \
+	main/* build/* docs.dvi Makefile
 
-tests: build_tests
-ifeq ($(OS), Darwin)
-	cd tests-build; open Tests.app
-else
-	cd tests-build; ./Tests
-endif
+test: clean
+	mkdir -p tmp
+	cp -r tests/* tmp
+	cd tmp; $(QMAKE)
+	cd tmp; make
+	tmp/tests
+	rm -rf tmp
 
-run:
-ifeq ($(OS), Darwin)
-	cd $(INSTALLATION_PATH); open 3DViewer.app
-else
-	cd $(INSTALLATION_PATH); ./3DViewer
-endif
-
-build:	clean
-	mkdir -p build
-	cp -r main/* build/
-ifeq ($(OS), Linux)
-	cd build; qmake6
-else
-	cd build; qmake
-endif
-	cd build; make
-
-build_tests: clean
-	mkdir -p tests-build
-	cp -r tests/* tests-build/
-ifeq ($(OS), Linux)
-	cd tests-build; qmake6
-else
-	cd tests-build; qmake
-endif
-	cd tests-build; make
+linter:
+	clang-format -n -style=google $(FILES)
 
 cppcheck:
 	cppcheck --language=c++ --std=c++17 \
 	--enable=all \
 	--suppress=unusedFunction \
 	--suppress=missingInclude \
-	main/*.cc main/*.h
-
-linter:
-	clang-format -n -style=google \
-	main/*.cc main/*.h tests/main.cc
-
-check: cppcheck linter leaks
+	$(FILES)
 
 #------------------------------------------------#
 #   SPEC                                         #
 #------------------------------------------------#
 
-.PHONY: install uninstall clean dvi dist build linter cppcheck
+.PHONY: install uninstall clean dvi dist test linter cppcheck
 .SILENT:
