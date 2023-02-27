@@ -48,9 +48,9 @@ endif
 
 all: install
 ifeq ($(OS), Darwin)
-	open $(OBJ_DIR)/$(OBJ_NAME)
+	cd $(OBJ_DIR); open $(OBJ_NAME)
 else
-	$(OBJ_DIR)/$(OBJ_NAME)
+	cd $(OBJ_DIR); ./$(OBJ_NAME)
 endif
 
 install: clean
