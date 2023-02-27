@@ -28,16 +28,14 @@ class Viewer {
   void RenderMesh();
 
   // transformations
-  inline void MoveByX(float value) { transformer_.MoveByX(value / 10.f); }
-  inline void MoveByY(float value) { transformer_.MoveByY(value / 10.f); }
-  inline void MoveByZ(float value) { transformer_.MoveByZ(value / 10.f); }
-  inline void RotateByX(float value) { transformer_.RotateByX(value); }
-  inline void RotateByY(float value) { transformer_.RotateByY(value); }
-  inline void RotateByZ(float value) { transformer_.RotateByZ(value); }
-  inline void Scale(float value) { transformer_.Scale(value); }
-  inline void SetAspectRatio(float value) {
-    transformer_.SetAspectRatio(value);
-  }
+  void MoveByX(float value) { transformer_.MoveByX(value / 10.f); }
+  void MoveByY(float value) { transformer_.MoveByY(value / 10.f); }
+  void MoveByZ(float value) { transformer_.MoveByZ(value / 10.f); }
+  void RotateByX(float value) { transformer_.RotateByX(value); }
+  void RotateByY(float value) { transformer_.RotateByY(value); }
+  void RotateByZ(float value) { transformer_.RotateByZ(value); }
+  void Scale(float value) { transformer_.Scale(value); }
+  void SetAspectRatio(float value) { transformer_.SetAspectRatio(value); }
 
  private:
   Mesh mesh_;
