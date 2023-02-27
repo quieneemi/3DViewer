@@ -13,6 +13,40 @@ MainForm::MainForm(Controller* controller)
   InitSettingsUI();
 }
 
+MainForm::~MainForm() { delete ui; }
+
+void MainForm::OnActionOpenTriggered() {
+  QFileDialog dialog(this, "", "", "*.obj");
+  if (dialog.exec() == QFileDialog::Accepted) {
+    setCursor(Qt::WaitCursor);
+
+    QString path = dialog.selectedFiles().at(0);
+    QPair<uint, uint> mesh_info = controller_->ImportFile(path);
+    UpdateTitle(path, mesh_info);
+    ui->openglWidget->update();
+
+    setCursor(Qt::ArrowCursor);
+  }
+}
+
+void MainForm::OnActionQuitTriggered() { QCoreApplication::quit(); }
+
+void MainForm::OnActionResetTriggered() {
+  ui->moveByXSpinBox->setValue(0);
+  ui->moveByYSpinBox->setValue(0);
+  ui->moveByZSpinBox->setValue(0);
+  ui->rotateByXSpinBox->setValue(0);
+  ui->rotateByYSpinBox->setValue(0);
+  ui->rotateByZSpinBox->setValue(0);
+  ui->scaleSpinBox->setValue(1);
+}
+
+void MainForm::OnActionJpegTriggered() { ExportImage("jpeg"); }
+
+void MainForm::OnActionBmpTriggered() { ExportImage("bmp"); }
+
+void MainForm::OnActionGifTriggered() { ExportImage("gif"); }
+
 void MainForm::OnOpenGLWidgetInitialized() { controller_->InitRenderers(); }
 
 void MainForm::OnOpenGLWidgetResized(float value) {
@@ -22,65 +56,56 @@ void MainForm::OnOpenGLWidgetResized(float value) {
 void MainForm::OnOpenGLWidgetPainted() { controller_->RenderMesh(); }
 
 void MainForm::OnOpenGLWidgetRotated(double y_value, double x_value) {
-  ui->rotateByXDoubleSpinBox->setValue(ui->rotateByXDoubleSpinBox->value() +
-                                       y_value);
-  ui->rotateByYDoubleSpinBox->setValue(ui->rotateByYDoubleSpinBox->value() +
-                                       x_value);
+  ui->rotateByXSpinBox->setValue(ui->rotateByXSpinBox->value() + y_value);
+  ui->rotateByYSpinBox->setValue(ui->rotateByYSpinBox->value() + x_value);
 }
 
 void MainForm::OnOpenGLWidgetScaled(double value) {
   ui->scaleSpinBox->setValue(ui->scaleSpinBox->value() + value);
 }
 
-MainForm::~MainForm() { delete ui; }
-
-// void MainForm::on_importButton_clicked() {
-//   QFileDialog dialog(this, "", "", "*.obj");
-//   if (dialog.exec() == QFileDialog::Accepted) {
-//     setCursor(Qt::WaitCursor);
-
-//    QString path = dialog.selectedFiles().at(0);
-//    QPair<uint, uint> mesh_info = controller_->ImportFile(path);
-//    UpdateTitle(path, mesh_info);
-//    ui->openglWidget->update();
-
-//    setCursor(Qt::ArrowCursor);
-//  }
-//}
-
-// void MainForm::on_jpegExportButton_clicked() { ExportImage("jpeg"); }
-
-// void MainForm::on_bmpExportButton_clicked() { ExportImage("bmp"); }
-
-// void MainForm::on_gifExportButton_clicked() { ExportImage("gif"); }
-
-void MainForm::on_moveByXSpinBox_valueChanged(int value) {
+void MainForm::OnMoveByXSpinBoxValueChanged(int value) {
   controller_->MoveByX(value);
   ui->openglWidget->update();
 }
 
-void MainForm::on_moveByYSpinBox_valueChanged(int value) {
+void MainForm::OnMoveByYSpinBoxValueChanged(int value) {
   controller_->MoveByY(value);
   ui->openglWidget->update();
 }
 
-void MainForm::on_moveByZSpinBox_valueChanged(int value) {
+void MainForm::OnMoveByZSpinBoxValueChanged(int value) {
   controller_->MoveByZ(value);
   ui->openglWidget->update();
 }
 
-void MainForm::on_scaleSpinBox_valueChanged(double value) {
+void MainForm::OnRotateByXSpinBoxValueChanged(double value) {
+  controller_->RotateByX(value);
+  ui->openglWidget->update();
+}
+
+void MainForm::OnRotateByYSpinBoxValueChanged(double value) {
+  controller_->RotateByY(value);
+  ui->openglWidget->update();
+}
+
+void MainForm::OnRotateByZSpinBoxValueChanged(double value) {
+  controller_->RotateByZ(value);
+  ui->openglWidget->update();
+}
+
+void MainForm::OnScaleSpinBoxValueChanged(double value) {
   controller_->Scale(value);
   ui->openglWidget->update();
 }
 
-void MainForm::on_projectionTypeComboBox_currentIndexChanged(int index) {
+void MainForm::OnProjectionTypeComboBoxCurrentIndexChanged(int index) {
   Settings::GetInstance().SetProjectionType(
       static_cast<Settings::ProjectionType>(index));
   ui->openglWidget->update();
 }
 
-void MainForm::on_backgroundColorButton_clicked() {
+void MainForm::OnBackgroundColorButtonCliked() {
   QColorDialog dialog(Settings::GetInstance().GetBackgroundColor(), this);
   if (dialog.exec() == QColorDialog::Accepted) {
     Settings::GetInstance().SetBackgroundColor(dialog.selectedColor());
@@ -89,17 +114,17 @@ void MainForm::on_backgroundColorButton_clicked() {
   }
 }
 
-void MainForm::on_linesTypeComboBox_currentIndexChanged(int index) {
+void MainForm::OnLinesTypeComboBoxCurrentIndexChanged(int index) {
   Settings::GetInstance().SetLinesType(static_cast<Settings::LinesType>(index));
   ui->openglWidget->update();
 }
 
-void MainForm::on_linesThicknessSpinBox_valueChanged(int value) {
+void MainForm::OnLinesThicknessSpinBoxValueChanged(int value) {
   Settings::GetInstance().SetLinesThickness(value);
   ui->openglWidget->update();
 }
 
-void MainForm::on_linesColorButton_clicked() {
+void MainForm::OnLinesColorButtonClicked() {
   QColorDialog dialog(Settings::GetInstance().GetLinesColor(), this);
   if (dialog.exec() == QColorDialog::Accepted) {
     Settings::GetInstance().SetLinesColor(dialog.selectedColor());
@@ -108,18 +133,18 @@ void MainForm::on_linesColorButton_clicked() {
   }
 }
 
-void MainForm::on_verticesTypeComboBox_currentIndexChanged(int index) {
+void MainForm::OnVerticesTypeComboBoxCurrentIndexChanged(int index) {
   Settings::GetInstance().SetVerticesType(
       static_cast<Settings::VerticesType>(index));
   ui->openglWidget->update();
 }
 
-void MainForm::on_verticesSizeSpinBox_valueChanged(int value) {
+void MainForm::OnVerticesSizeSpinBoxValueChanged(int value) {
   Settings::GetInstance().SetVerticesSize(value);
   ui->openglWidget->update();
 }
 
-void MainForm::on_verticesColorButton_clicked() {
+void MainForm::OnVerticesColorButtonClicked() {
   QColorDialog dialog(Settings::GetInstance().GetVerticesColor(), this);
   if (dialog.exec() == QColorDialog::Accepted) {
     Settings::GetInstance().SetVerticesColor(dialog.selectedColor());
@@ -184,45 +209,6 @@ void MainForm::ExportImage(QString extension) {
     const QString file = dialog.selectedFiles().at(0);
     controller_->ExportImage(file, ui->openglWidget->GetFrameBuffer());
   }
-}
-
-void MainForm::on_actionOpen_triggered() {
-  QFileDialog dialog(this, "", "", "*.obj");
-  if (dialog.exec() == QFileDialog::Accepted) {
-    setCursor(Qt::WaitCursor);
-
-    QString path = dialog.selectedFiles().at(0);
-    QPair<uint, uint> mesh_info = controller_->ImportFile(path);
-    UpdateTitle(path, mesh_info);
-    ui->openglWidget->update();
-
-    setCursor(Qt::ArrowCursor);
-  }
-}
-
-void MainForm::on_actionReset_triggered() {
-  ui->moveByXSpinBox->setValue(0);
-  ui->moveByYSpinBox->setValue(0);
-  ui->moveByZSpinBox->setValue(0);
-  ui->rotateByXDoubleSpinBox->setValue(0);
-  ui->rotateByYDoubleSpinBox->setValue(0);
-  ui->rotateByZDoubleSpinBox->setValue(0);
-  ui->scaleSpinBox->setValue(1);
-}
-
-void MainForm::on_rotateByXDoubleSpinBox_valueChanged(double value) {
-  controller_->RotateByX(value);
-  ui->openglWidget->update();
-}
-
-void MainForm::on_rotateByYDoubleSpinBox_valueChanged(double value) {
-  controller_->RotateByY(value);
-  ui->openglWidget->update();
-}
-
-void MainForm::on_rotateByZDoubleSpinBox_valueChanged(double value) {
-  controller_->RotateByZ(value);
-  ui->openglWidget->update();
 }
 
 }  // namespace s21

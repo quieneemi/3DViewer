@@ -23,28 +23,35 @@ class MainForm : public QMainWindow {
   MainForm& operator=(MainForm&&) = delete;
 
  private slots:
+  void OnActionOpenTriggered();
+  void OnActionQuitTriggered();
+  void OnActionResetTriggered();
+  void OnActionJpegTriggered();
+  void OnActionBmpTriggered();
+  void OnActionGifTriggered();
+
   void OnOpenGLWidgetInitialized();
   void OnOpenGLWidgetResized(float);
   void OnOpenGLWidgetPainted();
   void OnOpenGLWidgetRotated(double, double);
   void OnOpenGLWidgetScaled(double);
-  void on_moveByXSpinBox_valueChanged(int value);
-  void on_moveByYSpinBox_valueChanged(int value);
-  void on_moveByZSpinBox_valueChanged(int value);
-  void on_scaleSpinBox_valueChanged(double value);
-  void on_projectionTypeComboBox_currentIndexChanged(int index);
-  void on_backgroundColorButton_clicked();
-  void on_linesTypeComboBox_currentIndexChanged(int index);
-  void on_linesThicknessSpinBox_valueChanged(int value);
-  void on_linesColorButton_clicked();
-  void on_verticesTypeComboBox_currentIndexChanged(int index);
-  void on_verticesSizeSpinBox_valueChanged(int value);
-  void on_verticesColorButton_clicked();
-  void on_actionOpen_triggered();
-  void on_actionReset_triggered();
-  void on_rotateByXDoubleSpinBox_valueChanged(double arg1);
-  void on_rotateByYDoubleSpinBox_valueChanged(double arg1);
-  void on_rotateByZDoubleSpinBox_valueChanged(double arg1);
+
+  void OnMoveByXSpinBoxValueChanged(int);
+  void OnMoveByYSpinBoxValueChanged(int);
+  void OnMoveByZSpinBoxValueChanged(int);
+  void OnRotateByXSpinBoxValueChanged(double);
+  void OnRotateByYSpinBoxValueChanged(double);
+  void OnRotateByZSpinBoxValueChanged(double);
+  void OnScaleSpinBoxValueChanged(double);
+
+  void OnProjectionTypeComboBoxCurrentIndexChanged(int);
+  void OnBackgroundColorButtonCliked();
+  void OnLinesTypeComboBoxCurrentIndexChanged(int);
+  void OnLinesThicknessSpinBoxValueChanged(int);
+  void OnLinesColorButtonClicked();
+  void OnVerticesTypeComboBoxCurrentIndexChanged(int);
+  void OnVerticesSizeSpinBoxValueChanged(int);
+  void OnVerticesColorButtonClicked();
 
  private:
   Ui::MainForm* ui;

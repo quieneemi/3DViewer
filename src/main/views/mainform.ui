@@ -84,7 +84,13 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
-             <widget class="QDoubleSpinBox" name="rotateByXDoubleSpinBox">
+             <widget class="QDoubleSpinBox" name="rotateByXSpinBox">
+              <property name="prefix">
+               <string>X </string>
+              </property>
+              <property name="suffix">
+               <string> °</string>
+              </property>
               <property name="minimum">
                <double>-180.000000000000000</double>
               </property>
@@ -94,7 +100,13 @@
              </widget>
             </item>
             <item>
-             <widget class="QDoubleSpinBox" name="rotateByYDoubleSpinBox">
+             <widget class="QDoubleSpinBox" name="rotateByYSpinBox">
+              <property name="prefix">
+               <string>Y </string>
+              </property>
+              <property name="suffix">
+               <string> °</string>
+              </property>
               <property name="minimum">
                <double>-180.000000000000000</double>
               </property>
@@ -104,7 +116,13 @@
              </widget>
             </item>
             <item>
-             <widget class="QDoubleSpinBox" name="rotateByZDoubleSpinBox">
+             <widget class="QDoubleSpinBox" name="rotateByZSpinBox">
+              <property name="prefix">
+               <string>Z </string>
+              </property>
+              <property name="suffix">
+               <string> °</string>
+              </property>
               <property name="minimum">
                <double>-180.000000000000000</double>
               </property>
@@ -437,7 +455,7 @@
     <string>Reset</string>
    </property>
    <property name="shortcut">
-    <string>R</string>
+    <string>Ctrl+R</string>
    </property>
   </action>
   <action name="actionJPEG">
@@ -553,6 +571,342 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionOpen</sender>
+   <signal>triggered()</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnActionOpenTriggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionQuit</sender>
+   <signal>triggered()</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnActionQuitTriggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionReset</sender>
+   <signal>triggered()</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnActionResetTriggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionJPEG</sender>
+   <signal>triggered()</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnActionJpegTriggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionBMP</sender>
+   <signal>triggered()</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnActionBmpTriggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionGIF</sender>
+   <signal>triggered()</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnActionGifTriggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>moveByXSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnMoveByXSpinBoxValueChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>111</x>
+     <y>105</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>moveByYSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnMoveByYSpinBoxValueChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>111</x>
+     <y>136</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>moveByZSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnMoveByZSpinBoxValueChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>111</x>
+     <y>167</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rotateByXSpinBox</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnRotateByXSpinBoxValueChanged(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>111</x>
+     <y>241</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rotateByYSpinBox</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnRotateByYSpinBoxValueChanged(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>111</x>
+     <y>272</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rotateByZSpinBox</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnRotateByZSpinBoxValueChanged(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>111</x>
+     <y>303</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>scaleSpinBox</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnScaleSpinBoxValueChanged(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>111</x>
+     <y>377</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>projectionTypeComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnProjectionTypeComboBoxCurrentIndexChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>154</x>
+     <y>494</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>backgroundColorButton</sender>
+   <signal>clicked()</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnBackgroundColorButtonCliked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>161</x>
+     <y>526</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>linesTypeComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnLinesTypeComboBoxCurrentIndexChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>151</x>
+     <y>601</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>linesThicknessSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnLinesThicknessSpinBoxValueChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>151</x>
+     <y>634</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>linesColorButton</sender>
+   <signal>clicked()</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnLinesColorButtonClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>151</x>
+     <y>666</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>verticesTypeComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnVerticesTypeComboBoxCurrentIndexChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>151</x>
+     <y>741</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>verticesSizeSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnVerticesSizeSpinBoxValueChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>151</x>
+     <y>774</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>verticesColorButton</sender>
+   <signal>clicked()</signal>
+   <receiver>s21::MainForm</receiver>
+   <slot>OnVerticesColorButtonClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>151</x>
+     <y>806</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>589</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>OnOpenGLWidgetInitialized()</slot>
@@ -560,5 +914,26 @@
   <slot>OnOpenGLWidgetPainted()</slot>
   <slot>OnOpenGLWidgetRotated(double,double)</slot>
   <slot>OnOpenGLWidgetScaled(double)</slot>
+  <slot>OnActionOpenTriggered()</slot>
+  <slot>OnActionQuitTriggered()</slot>
+  <slot>OnActionResetTriggered()</slot>
+  <slot>OnActionJpegTriggered()</slot>
+  <slot>OnActionBmpTriggered()</slot>
+  <slot>OnActionGifTriggered()</slot>
+  <slot>OnMoveByXSpinBoxValueChanged(int)</slot>
+  <slot>OnMoveByYSpinBoxValueChanged(int)</slot>
+  <slot>OnMoveByZSpinBoxValueChanged(int)</slot>
+  <slot>OnRotateByXSpinBoxValueChanged(double)</slot>
+  <slot>OnRotateByYSpinBoxValueChanged(double)</slot>
+  <slot>OnRotateByZSpinBoxValueChanged(double)</slot>
+  <slot>OnScaleSpinBoxValueChanged(double)</slot>
+  <slot>OnProjectionTypeComboBoxCurrentIndexChanged(int)</slot>
+  <slot>OnBackgroundColorButtonCliked()</slot>
+  <slot>OnLinesTypeComboBoxCurrentIndexChanged(int)</slot>
+  <slot>OnLinesThicknessSpinBoxValueChanged(int)</slot>
+  <slot>OnLinesColorButtonClicked()</slot>
+  <slot>OnVerticesTypeComboBoxCurrentIndexChanged(int)</slot>
+  <slot>OnVerticesSizeSpinBoxValueChanged(int)</slot>
+  <slot>OnVerticesColorButtonClicked()</slot>
  </slots>
 </ui>

@@ -1,5 +1,51 @@
-OS = $(shell uname -s)
-INSTALLATION_PATH = ~/
+# @author  quieneemi
+
+#------------------------------------------------#
+#   INGREDIENTS                                  #
+#------------------------------------------------#
+# NAME       project name
+# VERSION    build version
+#
+# OS         operating system
+# FILES      all .cc .h files
+#
+# OBJ_DIR    installation path
+# OBJ_NAME   executable file name
+#
+# QMAKE      build system executable
+
+NAME := 3DViewer
+VERSION := 2.0
+
+OS := $(shell uname -s)
+FILES := $(shell find main -regex '.*\(cc\|h\)' -not -path "*shared*")
+
+OBJ_DIR := build/
+ifeq ($(OS), Darwin)
+OBJ_NAME     := $(NAME).app
+else
+OBJ_NAME     := $(NAME)
+endif
+
+ifeq ($(OS), Darwin)
+QMAKE        := qmake
+else
+QMAKE        := qmake6
+endif
+
+#------------------------------------------------#
+#   RECIPES                                      #
+#------------------------------------------------#
+# all        default goal
+# install
+# uninstall
+# clean      remove binary
+# dvi
+# dist
+# test       run unit tests
+# build      build program
+# linter     run code style check
+# cppcheck   run static code analys
 
 all: install run
 
@@ -65,3 +111,10 @@ linter:
 	main/*.cc main/*.h tests/main.cc
 
 check: cppcheck linter leaks
+
+#------------------------------------------------#
+#   SPEC                                         #
+#------------------------------------------------#
+
+.PHONY: install uninstall clean dvi dist build linter cppcheck
+.SILENT:
